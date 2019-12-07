@@ -1,0 +1,48 @@
+This are sqlite3 queries run on dataset of bitcoin
+Your can get similar dataset into database from kaggle
+------------------------------------------------------------
+TABLE NAME = bitcoin_data
+COLUMN NAMES = 'Date TEXT','Open FLOAT','High FLOAT','Low FLOAT','Close FLOAT','Adj Close FLOAT','Volume BIGINT'
+-----------------------------------------------------------------------------------------------------------------
+Getting All Data From Table
+
+SELECT * FROM bitcoin_data;
+-------------------------------------------------------------------------------------------------------------------
+Getting Data Based on Dates
+-----------------------------------------------------------------------------------------------------------------
+Get all dates
+SELECT Date From bitcoin_data;
+-------------------------------------------------------------
+Get data between two dates
+SELECT * FROM bitcoin_data WHERE Date BETWEEN '2019-01-1' AND '2019-05-31';
+Get All Data after Particular Date
+SELECT * FROM bitcoin_data WHERE Date > '2019-01-1';
+Get count of bitcoin prices in year 2019 till november
+SELECT Count(Date) FROM bitcoin_data WHERE Date > '2019-01-1';
+Get total Volume for year 2019
+SELECT SUM(Volume) FROM bitcoin_data WHERE Date > '2019-01-1';
+Get Max High Value From Year Along with all values
+SELECT * FROM bitcoin_data WHERE Date > '2019-01-01' ORDER BY High DESC LIMIT 1;
+Get Max High Value From Year between 2018-19
+SELECT * FROM bitcoin_data WHERE Date BETWEEN '2018-01-01' AND '2019-01-01' ORDER BY High DESC LIMIT 1;
+--------------------------------------------------------------------------------------------------------------------------
+Get all data for maximum volume
+SELECT * FROM bitcoin_data ORDER BY Volume DESC LIMIT 1;
+Get all data for maximum LOW
+SELECT * FROM bitcoin_data ORDER BY Low DESC LIMIT 1;
+Get all data for minimum Low
+SELECT * FROM bitcoin_data ORDER BY Low ASC LIMIT 1;
+-----------------------------------------------------------------------------------------------------------------------
+CREATE NEW TABLE and add Column Names To to the tables
+CREATE TABLE employee ('Date' TEXT,'Open' FLOAT,'High' FLOAT,'Low' FLOAT,'Close' FLOAT,'Adj Close' FLOAT,'Volume' BIGINT);
+-----------------------------------------------------------------------------------------------------------------------
+INSERT DATA into table
+INSERT INTO employee (Date,Open,High,Low,Close,Adj Close,Volume) VALUES ('2019-12-01',14568.54,1519.153,56484.165,886.5,216581.1,554861684);
+--------------------------------------------------------------------------------------------------------------------------------------------
+UPDATE SINGLE VALUE FROM DATABASE for PARTICULAR DATE
+UPDATE bitcoin_data SET High=1519.121 WHERE Date='2019-12-01';
+UPDATE MULTIPLE VALUES FROM DATABASE for PARTICULAR DATE
+UPDATE bitcoin_data SET High=1519.121,Low=56484.195 WHERE Date='2019-12-01';
+--------------------------------------------------------------------------------------------------------------------------
+DELETE ROW FROM DATABASE With PARTICULAR Date
+DELETE FROM bitcoin_data WHERE Date = '2019-12-01';
